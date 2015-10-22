@@ -21,7 +21,7 @@ android {
 }
 
 publish {
-    userOrg = 'drunkcode'
+    userOrg = 'mun0n'
     groupId = 'com.mun0n'
     artifactId = 'turboautocompletebutton'
     publishVersion = '1.0.0'

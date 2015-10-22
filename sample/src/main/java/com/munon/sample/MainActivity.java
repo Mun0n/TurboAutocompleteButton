@@ -11,6 +11,7 @@ import com.munon.turboautocompletebutton.TurboAutocompleteButton;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TEXT = "text";
     private Toolbar toolbar;
     private TurboAutocompleteButton turboAutocompleteButton;
 
@@ -32,6 +33,18 @@ public class MainActivity extends AppCompatActivity {
         turboAutocompleteButton.getAutoCompleteTextView().setAdapter(adapter);
 
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(TEXT, turboAutocompleteButton.getAutoCompleteTextView().getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        turboAutocompleteButton.getAutoCompleteTextView().setText(savedInstanceState.getString(TEXT, ""));
     }
 
     @Override

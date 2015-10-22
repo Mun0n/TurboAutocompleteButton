@@ -27,7 +27,7 @@ public class TurboAutocompleteButton extends LinearLayout implements TextWatcher
     private AutoCompleteTextView autoCompleteTextView;
     private ImageButton imageButton;
 
-    protected static final int RESULT_SPEECH = 160586;
+    protected static final int RESULT_SPEECH = 16058;
 
     private boolean clear = false;
     private boolean micWhite;
@@ -56,47 +56,55 @@ public class TurboAutocompleteButton extends LinearLayout implements TextWatcher
 
     private void init(Context context, AttributeSet attrs) {
         this.context = context;
-        TypedArray a = context.getTheme().obtainStyledAttributes(
-                attrs,
-                R.styleable.TurboAutocompleteButton,
-                0, 0);
+        if (context instanceof Activity) {
+            TypedArray a = context.getTheme().obtainStyledAttributes(
+                    attrs,
+                    R.styleable.TurboAutocompleteButton,
+                    0, 0);
 
-        try {
-            micWhite = a.getBoolean(R.styleable.TurboAutocompleteButton_micWhite, false);
-            idAnchor = a.getInteger(R.styleable.TurboAutocompleteButton_dropDownAnchor, 0);
-            hintText = a.getString(R.styleable.TurboAutocompleteButton_hint);
-        } finally {
-            a.recycle();
-        }
+            try {
+                micWhite = a.getBoolean(R.styleable.TurboAutocompleteButton_micWhite, false);
+                idAnchor = a.getInteger(R.styleable.TurboAutocompleteButton_dropDownAnchor, 0);
+                hintText = a.getString(R.styleable.TurboAutocompleteButton_hint);
+            } finally {
+                a.recycle();
+            }
 
-        setOrientation(HORIZONTAL);
-        setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        setWeightSum(10);
-        setGravity(Gravity.CENTER);
+            setOrientation(HORIZONTAL);
+            setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            setWeightSum(10);
+            setGravity(Gravity.CENTER);
 
-        autoCompleteTextView = new AutoCompleteTextView(context);
-        autoCompleteTextView.setLayoutParams(new LayoutParams(0, LayoutParams.WRAP_CONTENT, 8.5f));
-        autoCompleteTextView.setHint(hintText);
-        autoCompleteTextView.addTextChangedListener(this);
-        if (idAnchor != 0) {
-            autoCompleteTextView.setDropDownAnchor(idAnchor);
-        }
-        addView(autoCompleteTextView);
+            autoCompleteTextView = new AutoCompleteTextView(context);
+            autoCompleteTextView.setLayoutParams(new LayoutParams(0, LayoutParams.WRAP_CONTENT, 8.5f));
+            autoCompleteTextView.setHint(hintText);
+            autoCompleteTextView.addTextChangedListener(this);
+            if (idAnchor != 0) {
+                autoCompleteTextView.setDropDownAnchor(idAnchor);
+            }
+            addView(autoCompleteTextView);
 
-        imageButton = new ImageButton(context);
-        imageButton.setLayoutParams(new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.5f));
-        TypedValue outValue = new TypedValue();
-        getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
-        imageButton.setBackgroundResource(outValue.resourceId);
-        imageButton.setOnClickListener(this);
-        if (micWhite) {
-            imageButton.setImageResource(R.drawable.ic_mic_white);
+            imageButton = new ImageButton(context);
+            imageButton.setLayoutParams(new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.5f));
+            TypedValue outValue = new TypedValue();
+            getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+            imageButton.setBackgroundResource(outValue.resourceId);
+            imageButton.setOnClickListener(this);
+            setIconMic(R.drawable.ic_mic_white, R.drawable.ic_mic_black);
+            addView(imageButton);
         } else {
-            imageButton.setImageResource(R.drawable.ic_mic_black);
+            setIconMic(R.drawable.ic_mic_off_white, R.drawable.ic_mic_off_black);
+            throw new IllegalArgumentException("You need to pass an activity to use the microphone functionality");
         }
-        addView(imageButton);
 
+    }
 
+    private void setIconMic(int ic_white, int ic_mic_black) {
+        if (micWhite) {
+            imageButton.setImageResource(ic_white);
+        } else {
+            imageButton.setImageResource(ic_mic_black);
+        }
     }
 
     @Override
@@ -108,18 +116,10 @@ public class TurboAutocompleteButton extends LinearLayout implements TextWatcher
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         if (s.length() == 0) {
             clear = false;
-            if (micWhite) {
-                imageButton.setImageResource(R.drawable.ic_mic_white);
-            } else {
-                imageButton.setImageResource(R.drawable.ic_mic_black);
-            }
+            setIconMic(R.drawable.ic_mic_white, R.drawable.ic_mic_black);
         } else {
             clear = true;
-            if (micWhite) {
-                imageButton.setImageResource(R.drawable.ic_clear_white);
-            } else {
-                imageButton.setImageResource(R.drawable.ic_clear_black);
-            }
+            setIconMic(R.drawable.ic_clear_white, R.drawable.ic_clear_black);
         }
     }
 
@@ -163,6 +163,7 @@ public class TurboAutocompleteButton extends LinearLayout implements TextWatcher
             }
 
         }
+
     }
 
 
