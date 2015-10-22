@@ -1,10 +1,12 @@
 package com.munon.turboautocompletebutton;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,18 +18,16 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
-import com.munon.library.R;
-
 import java.util.ArrayList;
 import java.util.Locale;
 
 public class TurboAutocompleteButton extends LinearLayout implements TextWatcher, View.OnClickListener {
 
-    private final Context context;
+    private Context context;
     private AutoCompleteTextView autoCompleteTextView;
     private ImageButton imageButton;
 
-    protected static final int RESULT_SPEECH = 1;
+    protected static final int RESULT_SPEECH = 160586;
 
     private boolean clear = false;
     private boolean micWhite;
@@ -44,11 +44,18 @@ public class TurboAutocompleteButton extends LinearLayout implements TextWatcher
 
     public TurboAutocompleteButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.context = context;
-        init(attrs);
+        init(context, attrs);
     }
 
-    private void init(AttributeSet attrs) {
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public TurboAutocompleteButton(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init(context, attrs);
+    }
+
+
+    private void init(Context context, AttributeSet attrs) {
+        this.context = context;
         TypedArray a = context.getTheme().obtainStyledAttributes(
                 attrs,
                 R.styleable.TurboAutocompleteButton,

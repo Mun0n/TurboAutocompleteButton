@@ -15,7 +15,7 @@ compile ''
 as put this on your XML
 
 ```xml
-<com.munon.library.TurboAutocompleteButton
+<com.munon.turboautocompletebutton.TurboAutocompleteButton
                 android:id="@+id/turboAutocompleteButton"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"

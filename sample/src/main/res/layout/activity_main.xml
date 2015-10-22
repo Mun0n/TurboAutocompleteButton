@@ -16,7 +16,7 @@
             android:background="@android:color/white"
             android:elevation="6dp">
 
-            <com.munon.library.TurboAutocompleteButton
+            <com.munon.turboautocompletebutton.TurboAutocompleteButton
                 android:id="@+id/turboAutocompleteButton"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"

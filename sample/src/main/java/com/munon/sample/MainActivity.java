@@ -1,4 +1,4 @@
-package com.munon.turboautocompletebutton;
+package com.munon.sample;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 
+import com.munon.turboautocompletebutton.TurboAutocompleteButton;
 
 public class MainActivity extends AppCompatActivity {
 
