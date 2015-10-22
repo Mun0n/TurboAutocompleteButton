@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
 
 android {
     compileSdkVersion 23
@@ -7,8 +9,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 100
+        versionName "1.0.0"
     }
     buildTypes {
         release {
@@ -16,6 +18,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+publish {
+    userOrg = 'drunkcode'
+    groupId = 'com.mun0n'
+    artifactId = 'turboautocompletebutton'
+    publishVersion = '1.0.0'
+    desc = 'AutocompleteButton is a View wich combines an AutoCompleteTextView and an ImageButton with Mic/Clear functionallity'
+    website = 'https://github.com/Mun0n/TurboAutocompleteButton'
+    repository = 'https://github.com/Mun0n/TurboAutocompleteButton.git'
 }
 
 dependencies {

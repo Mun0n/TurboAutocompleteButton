@@ -22,7 +22,8 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@android:color/white"
                 app:dropDownAnchor="@+id/toolbar"
-                app:micWhite="false" />
+                app:micWhite="false"
+                app:hint="@android:string/search_go"/>
 
         </android.support.v7.widget.Toolbar>
 

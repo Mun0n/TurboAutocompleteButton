@@ -1,4 +1,4 @@
-package com.munon.library;
+package com.munon.turboautocompletebutton;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -16,6 +16,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import com.munon.library.R;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -29,8 +31,8 @@ public class TurboAutocompleteButton extends LinearLayout implements TextWatcher
 
     private boolean clear = false;
     private boolean micWhite;
-    private TurboListener listener;
     private int idAnchor;
+    private String hintText;
 
     public TurboAutocompleteButton(Context context) {
         this(context, null);
@@ -55,6 +57,7 @@ public class TurboAutocompleteButton extends LinearLayout implements TextWatcher
         try {
             micWhite = a.getBoolean(R.styleable.TurboAutocompleteButton_micWhite, false);
             idAnchor = a.getInteger(R.styleable.TurboAutocompleteButton_dropDownAnchor, 0);
+            hintText = a.getString(R.styleable.TurboAutocompleteButton_hint);
         } finally {
             a.recycle();
         }
@@ -66,6 +69,7 @@ public class TurboAutocompleteButton extends LinearLayout implements TextWatcher
 
         autoCompleteTextView = new AutoCompleteTextView(context);
         autoCompleteTextView.setLayoutParams(new LayoutParams(0, LayoutParams.WRAP_CONTENT, 8.5f));
+        autoCompleteTextView.setHint(hintText);
         autoCompleteTextView.addTextChangedListener(this);
         if (idAnchor != 0) {
             autoCompleteTextView.setDropDownAnchor(idAnchor);
@@ -134,9 +138,6 @@ public class TurboAutocompleteButton extends LinearLayout implements TextWatcher
             } catch (ActivityNotFoundException a) {
 
             }
-            if (listener != null) {
-                listener.onMicPressed();
-            }
         }
     }
 
@@ -157,9 +158,6 @@ public class TurboAutocompleteButton extends LinearLayout implements TextWatcher
         }
     }
 
-    public void setListener(TurboListener listener) {
-        this.listener = listener;
-    }
 
     public ImageButton getImageButton() {
         return imageButton;

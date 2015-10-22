@@ -3,5 +3,6 @@
     <declare-styleable name="TurboAutocompleteButton">
         <attr name="micWhite" format="boolean" />
         <attr name="dropDownAnchor" format="integer" />
+        <attr name="hint" format="string" />
     </declare-styleable>
 </resources>
