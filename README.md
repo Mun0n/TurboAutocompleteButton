@@ -4,11 +4,13 @@ TurboAutocompleteButton is the lib that **you need**!
 It builds an AutoCompleteTextView with an incorporated Mic/Clear button, which lets the user write by voice or clear the written text.
 <br>It's the same shit that Google do with their search toolbars!
 
+![TurboAutocompleteButton preview](out.gif)
+
 ##Adding to project
 To use this lib you will need to add this in your `build.gradle`
 
 ```gradle
-compile ''
+compile 'com.munon:turboiautocompletebutton:1.0.0'
 ```
 
 ##EASY 
