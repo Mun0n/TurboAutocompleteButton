@@ -40,3 +40,5 @@ autoCompleteButton.getImageButton();
 So, that's all folks!
 
 Comments, bugs, fixes...anything you wanted, ask an expert. I will be sleeping.
+
+Thanks to [hrules6872](https://github.com/hrules6872)(A.K.A MA MOSES) for the support
