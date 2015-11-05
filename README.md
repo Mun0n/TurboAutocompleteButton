@@ -1,4 +1,9 @@
 # TurboAutocompleteButton
+
+[![Twitter](http://img.shields.io/badge/contact-@drmunon-red.svg?style=flat)](http://twitter.com/drmunon)
+[![GitHub Issues](http://img.shields.io/github/issues/Mun0n/TurboImageProject.svg?style=flat)](http://github.com/Mun0n/TurboAutocompleteButton/issues)
+[![License](https://img.shields.io/badge/license-MIT-yellow.svg?style=flat)](http://opensource.org/licenses/MIT)
+
 TurboAutocompleteButton is the lib that **you need**! 
 <br>
 It builds an AutoCompleteTextView with an incorporated Mic/Clear button, which lets the user write by voice or clear the written text.
